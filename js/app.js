@@ -10,7 +10,6 @@ angular.module('CommentApp', ['ui.bootstrap'])
     })
     .controller('CommentController', function($scope, $http) {
         $scope.loading = false;
-
         $scope.refreshComments = function() {
             $scope.loading = true;
             $http.get(commentsUrl+'?order=-votes')
@@ -26,7 +25,6 @@ angular.module('CommentApp', ['ui.bootstrap'])
         };
 
         $scope.refreshComments();
-
         $scope.newComment = {votes: 0};
 
         $scope.incrementVotes = function(comment, amount) {
@@ -63,7 +61,7 @@ angular.module('CommentApp', ['ui.bootstrap'])
                 })
         };
 
-        $scope.removeComment = function(comment) {
+        $scope.deleteComment = function(comment) {
             if (window.confirm("Are you sure you want to delete this comment?")) {
                 $scope.loading = true;
                 $http.delete(commentsUrl + '/' + comment.objectId)
